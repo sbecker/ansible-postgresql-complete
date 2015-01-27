@@ -1,2 +1,3 @@
 - ANXS.monit, v1.0.1
 - ANXS.postgresql, v1.0.3
+- resmo.ntp, 0.3.0
