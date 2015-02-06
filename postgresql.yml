@@ -1,5 +1,5 @@
 ---
-- name: Install everything needed for a postgres 9.4 server
+- name: "Install PostgreSQL, with monitoring, and continuous incremental archiving to S3"
   hosts: '{{ target }}'
   sudo: yes
   vars:
@@ -63,10 +63,3 @@
         - "*"
 
     - role: Stouts.wale
-    # - role: joshualund.ufw
-    #   ufw_connection_rate_limits:
-    #     - {port: 22, protocol: tcp}
-    #   ufw_whitelisted_ports:
-    #     - {port: 22, protocol: tcp}
-    #     - {port: 80, protocol: tcp}
-    #     - {port: 443, protocol: tcp}
