@@ -20,6 +20,7 @@
     backup_s3_secret_access_key: change-me
 
     postgresql_version: 9.4
+    postgresql_archive_retention_days: 7
 
 # Stouts.wale
 # ===========
@@ -28,6 +29,7 @@
     wale_aws_s3_prefix: "s3://{{backup_s3_bucket}}/{{inventory_hostname}}"
     wale_cron:
       - { schedule: "0 2 * * *", cmd: "backup-push /var/lib/postgresql/{{postgresql_version}}/main" }
+      - { schedule: "0 3 * * *", cmd: "delete --confirm retain {{postgresql_archive_retention_days}}" }
 
   tasks:
     - name: Install python six package - version >= v1.7.0 - which is required by wal-e
