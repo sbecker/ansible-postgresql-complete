@@ -1,4 +1,4 @@
-- ANXS.monit, v1.0.1
-- ANXS.postgresql, v1.0.3
-- resmo.ntp, 0.3.0
-- Stouts.wale, 1.0.5
+ANXS.monit,v1.0.1
+ANXS.postgresql,v1.0.3
+resmo.ntp,0.3.0
+Stouts.wale,1.0.5
