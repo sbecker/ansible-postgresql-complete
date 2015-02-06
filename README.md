@@ -9,3 +9,9 @@ Run this playbook on a single server:
 $ ansible-playbook postgresql.yml -e "target=hostname"
 
 Still learning Ansible best practices. This isn't yet a reusable playbook.
+
+# TODO
+
+- Remove old backups after a certain date.
+- Document how to create an IAM account for S3 with restricted permissions to write but not delete
+- Make this more re-usable
