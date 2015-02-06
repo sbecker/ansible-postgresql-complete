@@ -1,6 +1,6 @@
 ---
 - name: Install everything needed for a postgres 9.4 server
-  hosts: dev
+  hosts: '{{ target }}'
   sudo: yes
   vars:
     database_name: "myapp"
