@@ -39,6 +39,7 @@
       postgresql_listen_addresses:
         - "*"
 
+    - role: Stouts.wale
     # - role: joshualund.ufw
     #   ufw_connection_rate_limits:
     #     - {port: 22, protocol: tcp}
