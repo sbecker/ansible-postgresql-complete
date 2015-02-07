@@ -38,14 +38,25 @@ Installs Postgres on Ubuntu, monitored by monit, with continuous archiving to S3
   ```
 
 # How to use
-1. Start a server instance running Ubuntu 14.04.
-2. To run this playbook on a single server:
+1. Start one or more server instances running Ubuntu 14.04.
+2. Copy `staging.sample` to `staging`, and/or `production.sample` to production, and setup db hostnames/ip addresses
+3. Copy `group_vars/dbservers.sample` to `group_vars/dbservers` and update the database name, password, and aws keys. 
+4. Then, to deploy the dbservers, run:
 
-$ ansible-playbook postgresql.yml -e "target=hostname"
+  ```
+  $ ansible-playbook -i staging dbservers.yml
+  # or
+  $ ansible-playbook -i production dbservers.yml
+  ```
 
 Still learning Ansible best practices. This isn't yet a reusable playbook.
 
 # TODO
 - Use pg_tune to optimize Postgres settings on install
-- Make pull request to Stouts.wale to support delete command
-- Make this more re-usable
+- Optimize kernal shared memory settings: 
+- Use EC2 dynamic inventory: http://docs.ansible.com/intro_dynamic_inventory.html
+- Support creation of multiple databases
+
+# Done
+* Make pull request to Stouts.wale to install up-to-date "six" package
+* Make pull request to Stouts.wale to support delete command

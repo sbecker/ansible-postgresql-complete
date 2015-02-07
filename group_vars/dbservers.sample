@@ -1,0 +1,27 @@
+database_name: "myapp"
+database_user: "deploy"
+database_password: "test1234"
+database_hostname: "localhost"
+database_port: 5432
+database_addresses: "0.0.0.0/0"
+
+postgresql_wal_level: hot_standby
+postgresql_archive_mode: yes
+postgresql_archive_command: /etc/wale/wale.sh wal-push %p
+postgresql_archive_timeout: 60
+
+backup_s3_bucket: change-me
+backup_s3_access_key_id: change-me
+backup_s3_secret_access_key: change-me
+
+postgresql_version: 9.4
+postgresql_archive_retention_days: 7
+
+# Stouts.wale
+# ===========
+wale_aws_access_key_id: "{{backup_s3_access_key_id}}"
+wale_aws_secret_access_key: "{{backup_s3_secret_access_key}}"
+wale_aws_s3_prefix: "s3://{{backup_s3_bucket}}/{{inventory_hostname}}"
+wale_cron:
+  - { schedule: "0 2 * * *", cmd: "backup-push /var/lib/postgresql/{{postgresql_version}}/main" }
+  - { schedule: "0 3 * * *", cmd: "delete --confirm retain {{postgresql_archive_retention_days}}" }

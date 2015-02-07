@@ -1,2 +1,6 @@
 .vagrant
 
+group_vars/dbservers
+staging
+production
+

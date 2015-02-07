@@ -1,0 +1,14 @@
+# file: production
+
+[west-dbservers]
+west-dbserver-1
+west-dbserver-2
+
+[east-dbservers]
+east-dbserver-1
+east-dbserver-2
+
+# dbservers in all geos
+[dbservers:children]
+west-dbservers
+east-dbservers

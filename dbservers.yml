@@ -1,0 +1,32 @@
+---
+# file: dbservers.yml
+- hosts: dbservers
+  sudo: yes
+  roles:
+    - role: resmo.ntp
+    - role: ANXS.monit
+      monit_notify_email: "sysadmin.email@example.org"
+    - role: ANXS.postgresql
+      monit_protection: true
+      postgresql_version: "{{postgresql_version}}"
+      postgresql_databases:
+        - name: "{{database_name}}"
+      postgresql_users:
+        - name: "{{database_user}}"
+          pass: "{{database_password}}"
+          encrypted: no
+      postgresql_user_privileges:
+        - name: "{{database_user}}"
+          db: "{{database_name}}"
+          priv: "ALL"
+      postgresql_pg_hba_custom:
+        - type: host
+          database: "{{database_name}}"
+          user: "{{database_user}}"
+          address: "{{database_addresses}}"
+          method: 'md5'
+          comment: "Allow remote access to '{{database_name}}' database by '{{database_user}}' user"
+      postgresql_listen_addresses:
+        - "*"
+
+    - role: Stouts.wale
