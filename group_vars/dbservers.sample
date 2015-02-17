@@ -1,4 +1,3 @@
-database_name: "myapp"
 database_user: "deploy"
 database_password: "test1234"
 database_hostname: "localhost"
@@ -16,6 +15,18 @@ backup_s3_secret_access_key: change-me
 
 postgresql_version: 9.4
 postgresql_archive_retention_days: 7
+
+monit_notify_email: sysadmin.email@example.org
+
+my_postgresql_databases:
+  - name: database1
+  - name: database2
+my_postgresql_user_privileges:
+  - { name: "{{database_user}}", db: "database1", priv: "ALL"}
+  - { name: "{{database_user}}", db: "database2",  priv: "ALL"}
+my_postgresql_pg_hba_custom:
+  - { type: "host", database: "database1", user: "{{database_user}}", address: "{{database_addresses}}", method: "md5", comment: "Allow {{database_user}} access to database1 via {{database_addresses}}" }
+  - { type: "host", database: "database2",  user: "{{database_user}}", address: "{{database_addresses}}", method: "md5", comment: "Allow {{database_user}} access to database2 via {{database_addresses}}" }
 
 # Stouts.wale
 # ===========
