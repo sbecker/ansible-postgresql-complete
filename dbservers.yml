@@ -4,6 +4,7 @@
   sudo: yes
 
   roles:
+    - role: common
     - role: resmo.ntp
     - role: ANXS.monit
       monit_notify_email: "{{notify_email}}"
